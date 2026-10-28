@@ -1,10 +1,7 @@
-import { execFileSync } from "node:child_process";
-import { readFileSync } from "node:fs";
-import { fileURLToPath } from "node:url";
+import { readFileSync, writeFileSync } from "node:fs";
 
-const root = fileURLToPath(new URL("..", import.meta.url));
-const current = readFileSync(new URL("../index.html", import.meta.url), "utf8");
-const base = execFileSync("git", ["show", "main:index.html"], { encoding: "utf8", cwd: root });
+const htmlUrl = new URL("../index.html", import.meta.url);
+const baselineUrl = new URL("./copy-baseline.txt", import.meta.url);
 
 function decode(text) {
   return text
@@ -16,7 +13,11 @@ function decode(text) {
 }
 
 function visibleText(fragment) {
-  return decode(fragment.replace(/<[^>]+>/g, " ")).replace(/\s+/g, " ").trim();
+  const withoutCode = fragment
+    .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " ")
+    .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, " ")
+    .replace(/<noscript\b[^>]*>[\s\S]*?<\/noscript>/gi, " ");
+  return decode(withoutCode.replace(/<[^>]+>/g, "")).replace(/\s+/g, " ").trim();
 }
 
 function inner(html, tag) {
@@ -59,33 +60,121 @@ function metas(html) {
   return { title, tags, canonical, icon, json };
 }
 
+function snapshot(html) {
+  const meta = metas(html);
+  return {
+    header: visibleText(inner(html, "header")),
+    main: visibleText(inner(html, "main")),
+    dialog: visibleText(inner(html, "dialog")),
+    footer: visibleText(inner(html, "footer")),
+    headings: headings(html),
+    ids: ids(html),
+    nav: nav(html),
+    title: meta.title,
+    meta: meta.tags,
+    canonical: meta.canonical,
+    icon: meta.icon,
+    "json-ld": meta.json,
+  };
+}
+
+const sectionOrder = ["header", "main", "dialog", "footer", "headings", "ids", "nav", "title", "meta", "canonical", "icon", "json-ld"];
+
+function serialize(snap) {
+  const lines = [
+    "# Visible copy in DOM order, from index.html at 222d9fe (PR #3).",
+    "# Refresh after an intentional copy change: node scripts/check-copy.mjs --write",
+    "",
+  ];
+  for (const name of sectionOrder) {
+    lines.push(`== ${name}`);
+    const value = snap[name];
+    if (Array.isArray(value)) lines.push(...value);
+    else lines.push(value);
+    lines.push("");
+  }
+  return `${lines.join("\n").replace(/\n+$/, "\n")}`;
+}
+
+function parseBaseline(text) {
+  const snap = {};
+  let name = "";
+  const buckets = {};
+  for (const line of text.split("\n")) {
+    if (line.startsWith("# ") || line.trim() === "") continue;
+    if (line.startsWith("== ")) {
+      name = line.slice(3).trim();
+      buckets[name] = [];
+      continue;
+    }
+    if (!name) throw new Error(`baseline line outside a section: ${line}`);
+    buckets[name].push(line);
+  }
+  for (const key of sectionOrder) {
+    const rows = buckets[key];
+    if (!rows) throw new Error(`baseline missing section ${key}`);
+    snap[key] = ["header", "main", "dialog", "footer", "title", "canonical", "icon"].includes(key) ? rows.join("\n") : rows;
+  }
+  return snap;
+}
+
+function tokensInOrder(baselineText, currentText) {
+  const want = baselineText.split(/\s+/).filter(Boolean);
+  const have = currentText.split(/\s+/).filter(Boolean);
+  let index = 0;
+  for (const token of have) {
+    if (token === want[index]) index += 1;
+    if (index === want.length) return true;
+  }
+  return index === want.length;
+}
+
+const current = readFileSync(htmlUrl, "utf8");
+
+if (process.argv.includes("--write")) {
+  const sourceFlag = process.argv.indexOf("--write");
+  const sourcePath = process.argv[sourceFlag + 1];
+  const sourceHtml = sourcePath && !sourcePath.startsWith("-")
+    ? readFileSync(sourcePath, "utf8")
+    : current;
+  writeFileSync(baselineUrl, serialize(snapshot(sourceHtml)));
+  console.log("wrote scripts/copy-baseline.txt");
+  process.exit(0);
+}
+
+const expected = parseBaseline(readFileSync(baselineUrl, "utf8"));
+const actual = snapshot(current);
+
 function same(label, a, b) {
   const left = JSON.stringify(a);
   const right = JSON.stringify(b);
   if (left !== right) {
     console.error(`CHANGED ${label}`);
-    console.error(`  main:    ${left}`);
-    console.error(`  current: ${right}`);
+    console.error(`  baseline: ${left}`);
+    console.error(`  current:  ${right}`);
     return false;
   }
   return true;
 }
 
 let ok = true;
-ok = same("main text", visibleText(inner(base, "main")), visibleText(inner(current, "main"))) && ok;
-ok = same("footer text", visibleText(inner(base, "footer")), visibleText(inner(current, "footer"))) && ok;
-ok = same("dialog text", visibleText(inner(base, "dialog")), visibleText(inner(current, "dialog"))) && ok;
-ok = same("headings", headings(base), headings(current)) && ok;
-ok = same("ids", ids(base), ids(current)) && ok;
-ok = same("nav", nav(base), nav(current)) && ok;
-
-const baseMeta = metas(base);
-const currentMeta = metas(current);
-ok = same("title", baseMeta.title, currentMeta.title) && ok;
-ok = same("meta", baseMeta.tags, currentMeta.tags) && ok;
-ok = same("canonical", baseMeta.canonical, currentMeta.canonical) && ok;
-ok = same("icon", baseMeta.icon, currentMeta.icon) && ok;
-ok = same("json-ld", baseMeta.json, currentMeta.json) && ok;
+if (!tokensInOrder(expected.header, actual.header)) {
+  console.error("CHANGED header");
+  console.error(`  baseline: ${expected.header}`);
+  console.error(`  current:  ${actual.header}`);
+  ok = false;
+}
+ok = same("main", expected.main, actual.main) && ok;
+ok = same("dialog", expected.dialog, actual.dialog) && ok;
+ok = same("footer", expected.footer, actual.footer) && ok;
+ok = same("headings", expected.headings, actual.headings) && ok;
+ok = same("ids", expected.ids, actual.ids) && ok;
+ok = same("nav", expected.nav, actual.nav) && ok;
+ok = same("title", expected.title, actual.title) && ok;
+ok = same("meta", expected.meta, actual.meta) && ok;
+ok = same("canonical", expected.canonical, actual.canonical) && ok;
+ok = same("icon", expected.icon, actual.icon) && ok;
+ok = same("json-ld", expected["json-ld"], actual["json-ld"]) && ok;
 
 const form = (current.match(/<form\b[^>]*>/i) || [""])[0];
 for (const required of ['name="beta-access"', 'method="POST"', 'data-netlify="true"', 'data-netlify-honeypot="bot-field"']) {
@@ -148,4 +237,4 @@ for (const file of publicFiles) {
 }
 
 if (!ok) process.exit(1);
-console.log("ok: copy, headings, ids, nav, head, and form match main");
+console.log("ok: copy matches scripts/copy-baseline.txt");
