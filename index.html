@@ -2,9 +2,38 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>oneAD — Book your crew. Rehire the best.</title>
+    <title>oneAD: Crew Booking for Film Productions</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Invite crew by email, book them for a shoot day or the whole production, and keep a private rehire list. They accept or decline by link, with no account. Crew are free.">
+    <link rel="canonical" href="https://oneadapp.com/">
+    <meta property="og:title" content="oneAD: Crew Booking for Film Productions">
+    <meta property="og:description" content="Invite crew by email, book them for a shoot day or the whole production, and keep a private rehire list. They accept or decline by link, with no account. Crew are free.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://oneadapp.com/">
+    <meta property="og:site_name" content="oneAD">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:description" content="Invite crew by email, book them for a shoot day or the whole production, and keep a private rehire list. They accept or decline by link, with no account. Crew are free.">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "oneAD",
+        "url": "https://oneadapp.com/",
+        "founder": {
+            "@type": "Person",
+            "name": "Jonathan Skinner"
+        }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "oneAD",
+        "url": "https://oneadapp.com/"
+    }
+    </script>
     <noscript>
         <style>
             #beta-dialog {
@@ -93,6 +122,18 @@
         .hero p {
             margin: 0 0 28px;
         }
+        .hero .beta-badge,
+        .section .beta-badge {
+            display: inline-block;
+            margin: 0 0 18px;
+            padding: 6px 14px;
+            border: 1px solid #77e1cf;
+            border-radius: 999px;
+            color: #77e1cf;
+            font-size: 0.92rem;
+            font-weight: 600;
+            line-height: 1.4;
+        }
         .cta-button,
         .form-submit {
             display: inline-block;
@@ -169,7 +210,7 @@
             margin: 0;
             padding: 24px 22px 22px;
         }
-        .beta-form h2 {
+        .beta-form h3 {
             margin: 0 0 8px;
             color: #77e1cf;
             font-size: 1.4rem;
@@ -273,9 +314,13 @@
 
     <main>
         <section class="hero" id="top">
+            <p class="beta-badge">In closed beta with Cleveland producers. Capped at 3 to 5 producers.</p>
             <h1>Book your crew. Rehire the best.</h1>
             <p>
                 Invite crew by email. They accept or decline from a link, with no account, and you keep a private rehire list. Crew are free.
+            </p>
+            <p>
+                Works alongside the tools you already use, like StudioBinder, Movie Magic and Wrapbook.
             </p>
             <p>
                 For indie and line producers, and for UPMs and ADs, who book crew by text and email.
@@ -369,6 +414,7 @@
 
         <section class="section" id="request-access">
             <h2>Request beta access</h2>
+            <p class="beta-badge">In closed beta with Cleveland producers. Capped at 3 to 5 producers.</p>
             <p>
                 New oneAD accounts are created with an invitation code. This page does not create an account.
             </p>
@@ -379,7 +425,7 @@
 
     <dialog id="beta-dialog" aria-labelledby="beta-dialog-title">
         <form class="beta-form" name="beta-access" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
-            <h2 id="beta-dialog-title">Request beta access</h2>
+            <h3 id="beta-dialog-title">Request beta access</h3>
             <p>Send your name, email, and the kind of production you work on.</p>
             <p class="hp">
                 <label>Leave this empty <input name="bot-field" type="text" tabindex="-1" autocomplete="off"></label>
@@ -395,7 +441,7 @@
             </label>
             <label class="field">
                 Production type
-                <input id="beta-production-type" name="production-type" type="text" required maxlength="200" autocomplete="organization-title">
+                <input id="beta-production-type" name="production-type" type="text" required maxlength="200" autocomplete="off">
             </label>
             <div class="form-actions">
                 <button class="form-submit" type="submit">Request beta access</button>
