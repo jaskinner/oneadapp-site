@@ -1,0 +1,107 @@
+/* oneAD shared theme tokens. Source of truth for this site and the app.
+   Direction B, Call Sheet. Light values match the agreed :root block.
+   Dark values match the agreed .dark list. Any dark token that list does
+   not give is set here and contrast-checked (notes below).
+   The Instrument Sans Fallback @font-face is site CSS, not this file.
+   Site v1 is light-only; .dark is here for app parity.
+
+   Picked dark values (not in the agreed list):
+   - Surfaces that pair with a listed color keep that pairing:
+     card/popover foregrounds, secondary/accent/sidebar foregrounds,
+     sidebar (same as muted), sidebar-primary (same as primary),
+     sidebar-border, sidebar-ring.
+   - --accent: #34322E. Hover fill, one step lighter than muted #2A2926.
+     Foreground 11.0:1, muted-foreground 5.1:1, link 6.1:1.
+   - --sidebar-accent: #3C3A34. Stronger hover than --accent.
+     Foreground 9.8:1, muted-foreground 4.6:1, link 5.4:1.
+   - --danger: badge text. Light #A3241A equals --destructive (5.9:1 on
+     --danger-bg). Dark #FF9C92 is the agreed badge pair (8.0:1 on
+     #3A1512). --destructive #B3261E on #3A1512 is 2.5:1, so badge text
+     cannot reuse it. Button text stays --destructive-foreground.
+*/
+
+:root {
+  color-scheme: light;
+  --background: #F2EEE2;
+  --foreground: #1A1917;
+  --card: #FDFBF5;
+  --card-foreground: #1A1917;
+  --popover: #FDFBF5;
+  --popover-foreground: #1A1917;
+  --primary: #1A1917;
+  --primary-foreground: #F2EEE2;
+  --secondary: #E7E2D3;
+  --secondary-foreground: #1A1917;
+  --muted: #ECE8DB;
+  --muted-foreground: #57534A;
+  --accent: #E8E3D5;
+  --accent-foreground: #1A1917;
+  --destructive: #A3241A;
+  --destructive-foreground: #FFFFFF;
+  --border: #D6D0C0;
+  --input: #857F6E;
+  --ring: #1E4FA3;
+  --link: #1E4FA3;
+  --signal: #EBA010;
+  --signal-foreground: #1A1917;
+  --success: #1B6B43;
+  --success-bg: #DDF1E5;
+  --warning: #7A4B00;
+  --warning-bg: #FBE7B0;
+  --danger: #A3241A;
+  --danger-bg: #FBE0DC;
+  --sidebar: #ECE8DB;
+  --sidebar-foreground: #1A1917;
+  --sidebar-primary: #1A1917;
+  --sidebar-primary-foreground: #F2EEE2;
+  --sidebar-accent: #E3DECF;
+  --sidebar-accent-foreground: #1A1917;
+  --sidebar-border: #D6D0C0;
+  --sidebar-ring: #1E4FA3;
+  --radius: 0.25rem;
+  --font-sans: 'Instrument Sans', 'Instrument Sans Fallback', ui-sans-serif, system-ui, "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+.dark {
+  color-scheme: dark;
+  --background: #121211;
+  --foreground: #F1EEE7;
+  --card: #1C1B19;
+  --card-foreground: #F1EEE7;
+  --popover: #1C1B19;
+  --popover-foreground: #F1EEE7;
+  --primary: #F1EEE7;
+  --primary-foreground: #121211;
+  --secondary: #2A2926;
+  --secondary-foreground: #F1EEE7;
+  --muted: #2A2926;
+  --muted-foreground: #A9A498;
+  --accent: #34322E;
+  --accent-foreground: #F1EEE7;
+  --destructive: #B3261E;
+  --destructive-foreground: #FFFFFF;
+  --border: #3A3833;
+  --input: #6F6B60;
+  --ring: #8DB4F2;
+  --link: #8DB4F2;
+  --signal: #EBA010;
+  --signal-foreground: #121211;
+  --success: #6FD6A0;
+  --success-bg: #16301F;
+  --warning: #F5C451;
+  --warning-bg: #33260A;
+  --danger: #FF9C92;
+  --danger-bg: #3A1512;
+  --sidebar: #2A2926;
+  --sidebar-foreground: #F1EEE7;
+  --sidebar-primary: #F1EEE7;
+  --sidebar-primary-foreground: #121211;
+  --sidebar-accent: #3C3A34;
+  --sidebar-accent-foreground: #F1EEE7;
+  --sidebar-border: #3A3833;
+  --sidebar-ring: #8DB4F2;
+  --radius: 0.25rem;
+  --font-sans: 'Instrument Sans', 'Instrument Sans Fallback', ui-sans-serif, system-ui, "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
