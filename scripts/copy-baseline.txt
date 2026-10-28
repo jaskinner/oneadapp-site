@@ -2,25 +2,25 @@
 # Refresh after an intentional copy change: node scripts/check-copy.mjs --write
 
 == header
-oneAD The problem How it works Booking Crew book Free for crew Beta access
+oneAD Menu The problem How it works Booking Crew book Free for crew Beta access Request beta access
 
 == main
-In closed beta with Cleveland producers. Capped at 3 to 5 producers. Book your crew. Rehire the best. Invite crew by email. They accept or decline from a link, no account needed. Everyone you hire goes into a private rehire list only you can see. Crew are free. Works alongside the tools you already use, like StudioBinder, Movie Magic and Wrapbook. Made for indie producers, line producers, UPMs, and ADs who book crew by text and email today. Request beta access Confirmations get lost between texts and sheets You are already booking crew by text and email, then checking a sheet to see who said yes. oneAD keeps that answer on the project: who you invited, and who accepted. How it works Create a project. Add departments, then the roles in each department. Add the shoot days. Invite crew by email. They accept or decline from the link. No account is required. The link expires in 14 days. Each department lists its roles, who is booked, and which invitations are still out. A day, or the whole production When you invite someone, choose the shoot days they are booked. Leave the days unchecked and they are booked for the whole production. After they are booked, you can change those days. Relay: one email to the crew who have accepted. Send it to everyone, one department, or one shoot day. Pending invitations are not included. Relays go out from the project owner. A private crew book When someone accepts, they are saved to your private crew book. You can rate them from 1 to 5 and keep notes. Ratings and notes stay private to you. The next time you invite for a role, people you have already hired for that role are listed first, highest rating first. You can still type a new email. Crew are free. Pricing is planned. Accepting an invite does not require a payment. Crew are free. Pricing for producers is planned. No prices are shown here, and the app does not take payment today. Request beta access In closed beta with Cleveland producers. Capped at 3 to 5 producers. oneAD is invite-only right now. Request access and Jonathan will follow up. Request beta access Built by Jonathan Skinner, Skinner Consulting, Cleveland.
+Closed beta · Cleveland producers Book your crew. Rehire the best. Invite film crew by email. They accept or decline from a link, no account needed. Everyone you hire goes into a private crew book only you can see. Made for indie film producers, line producers, UPMs, and ADs who book crew by text and email today. Request beta access Use it next to tools like StudioBinder, Movie Magic and Wrapbook. oneAD doesn't connect to them. Confirmations get lost between texts and sheets You are already booking crew by text and email, then checking a sheet to see who said yes. oneAD keeps that answer on the project: who you invited, and who accepted. How film crew booking works Create a project. Add departments, then the roles in each department. Add the shoot days. Invite film crew by email. They accept or decline from the link, no account needed. The link expires in 14 days. Each department lists its roles, who is booked, and which invitations are still out. Book crew by the day or for the whole production When you invite someone, choose the shoot days they are booked. Leave the days unchecked and they are booked for the whole production. After they are booked, you can change those days. A relay is one email to the crew who have accepted. Send it to everyone, one department, or one shoot day. Pending invitations are not included. Only the project owner can send relays. A private crew book When someone accepts, they are saved to your private crew book. You can rate them from 1 to 5 and keep notes. Ratings and notes stay private to you. The next time you invite for a role, people you have already hired for that role are listed first, highest rating first. You can still type a new email. Crew are free. Pricing is planned. Accepting an invite does not require a payment. Crew are free. Pricing for producers is planned, and the app does not take payment today. Join the closed beta In closed beta with Cleveland producers. Capped at 3 to 5 producers. Beta spots are limited. Send your name, email and the kind of production you work on, and Jonathan will reply about next steps. Request beta access
 
 == dialog
 Request beta access Send your name, email, and the kind of production you work on. Leave this empty Name Email Production type Request beta access Cancel
 
 == footer
-© 2026 oneAD. Built by Jonathan Skinner, Skinner Consulting, Cleveland.
+© 2026 Skinner Software Consulting LLC. oneAD is built in Cleveland.
 
 == headings
 h1:Book your crew. Rehire the best.
 h2:Confirmations get lost between texts and sheets
-h2:How it works
-h2:A day, or the whole production
+h2:How film crew booking works
+h2:Book crew by the day or for the whole production
 h2:A private crew book
 h2:Crew are free. Pricing is planned.
-h2:Request beta access
+h2:Join the closed beta
 h3:Request beta access
 
 == ids
@@ -48,12 +48,12 @@ beta-status
 #request-access Beta access
 
 == title
-oneAD: Crew Booking for Film Productions
+oneAD: Crew Booking Software for Film Productions
 
 == meta
 viewport=width=device-width, initial-scale=1
 description=Invite film crew by email, book them by shoot day or the whole production, and keep a private rehire list. Crew accept by link, no account. Free for crew.
-og:title=oneAD: Crew Booking for Film Productions
+og:title=oneAD: Crew Booking Software for Film Productions
 og:description=Invite film crew by email, book them by shoot day or the whole production, and keep a private rehire list. Crew accept by link, no account. Free for crew.
 og:type=website
 og:url=https://oneadapp.com/

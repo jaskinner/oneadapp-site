@@ -105,7 +105,7 @@ Weights 500 and 600 use the CSS font matching algorithm (500 â†’ regular, 600 â†
 
 4px base: 4, 8, 12, 16, 24, 32, 48, 64, 96. Sections are 48px on small screens and 96px from 768px. Page max width 1120px. Text measure 65ch.
 
-`--radius: 0.25rem` (4px). Buttons and inputs use 2px. Cards and the dialog use `--radius`. Pills are only the beta badge. Focus is `outline: 3px solid var(--ring); outline-offset: 2px`.
+`--radius: 0.25rem` (4px). Buttons and inputs use 2px. Cards and the dialog use `--radius`. There is no pill. The closed-beta label is plain mono text, with no border. Focus is `outline: 3px solid var(--ring); outline-offset: 2px`.
 
 ## Buttons
 

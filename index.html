@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>oneAD: Crew Booking for Film Productions</title>
+    <title>oneAD: Crew Booking Software for Film Productions</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Invite film crew by email, book them by shoot day or the whole production, and keep a private rehire list. Crew accept by link, no account. Free for crew.">
     <link rel="canonical" href="https://oneadapp.com/">
-    <meta property="og:title" content="oneAD: Crew Booking for Film Productions">
+    <meta property="og:title" content="oneAD: Crew Booking Software for Film Productions">
     <meta property="og:description" content="Invite film crew by email, book them by shoot day or the whole production, and keep a private rehire list. Crew accept by link, no account. Free for crew.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://oneadapp.com/">
@@ -433,6 +433,9 @@
             font-size: 0.875rem;
             line-height: 1.25;
         }
+        .hero .note {
+            margin-top: 1rem;
+        }
         .label {
             margin: 0 0 0.75rem;
             padding-bottom: 0.5rem;
@@ -450,18 +453,9 @@
         #crew-book .label::before { content: "04 · Crew book"; }
         #free-for-crew .label::before { content: "05 · Free for crew"; }
         #request-access .label::before { content: "06 · Beta access"; }
-        .beta-badge {
-            display: inline-block;
-            margin: 0 0 1rem;
-            padding: 0.4rem 0.75rem;
-            border: 1px solid var(--foreground);
-            border-radius: 999px;
-            color: var(--foreground);
-            background: transparent;
-            font-family: var(--font-mono);
-            font-size: 0.75rem;
-            font-weight: 500;
-            line-height: 1.4;
+        .hero .label {
+            border-bottom: 0;
+            padding-bottom: 0;
         }
         .cta-button,
         .form-submit,
@@ -537,10 +531,6 @@
             font-family: var(--font-mono);
             font-size: clamp(1.75rem, 1.4rem + 1.5vw, 2.25rem);
             font-weight: 700;
-        }
-        .byline {
-            margin-top: 1.5rem;
-            font-weight: 500;
         }
         dialog {
             width: min(440px, calc(100% - 32px));
@@ -695,18 +685,18 @@
     <main>
         <section class="hero" id="top" tabindex="-1">
             <div class="wrap">
-                <p class="beta-badge">In closed beta with Cleveland producers. Capped at 3 to 5 producers.</p>
+                <p class="label">Closed beta · Cleveland producers</p>
                 <h1>Book your crew. Rehire the best.</h1>
-                <p class="lede">
-                    Invite crew by email. They accept or decline from a link, no account needed. Everyone you hire goes into a private rehire list only you can see. Crew are free.
-                </p>
-                <p class="note">
-                    Works alongside the tools you already use, like StudioBinder, Movie Magic and Wrapbook.
+                <p>
+                    Invite film crew by email. They accept or decline from a link, no account needed. Everyone you hire goes into a private crew book only you can see.
                 </p>
                 <p>
-                    Made for indie producers, line producers, UPMs, and ADs who book crew by text and email today.
+                    Made for indie film producers, line producers, UPMs, and ADs who book crew by text and email today.
                 </p>
                 <a class="cta-button" href="#beta-dialog">Request beta access</a>
+                <p class="note">
+                    Use it next to tools like StudioBinder, Movie Magic and Wrapbook. oneAD doesn't connect to them.
+                </p>
             </div>
         </section>
 
@@ -723,13 +713,13 @@
         <section class="sheet" id="how-it-works">
             <div class="wrap">
                 <div class="label" aria-hidden="true"></div>
-                <h2>How it works</h2>
+                <h2>How film crew booking works</h2>
                 <ol class="steps">
                     <li>Create a project.</li>
                     <li>Add departments, then the roles in each department.</li>
                     <li>Add the shoot days.</li>
-                    <li>Invite crew by email.</li>
-                    <li>They accept or decline from the link. No account is required. The link expires in 14 days.</li>
+                    <li>Invite film crew by email.</li>
+                    <li>They accept or decline from the link, no account needed. The link expires in 14 days.</li>
                 </ol>
                 <p>
                     Each department lists its roles, who is booked, and which invitations are still out.
@@ -740,12 +730,12 @@
         <section class="band" id="booking">
             <div class="wrap">
                 <div class="label" aria-hidden="true"></div>
-                <h2>A day, or the whole production</h2>
+                <h2>Book crew by the day or for the whole production</h2>
                 <p>
                     When you invite someone, choose the shoot days they are booked. Leave the days unchecked and they are booked for the whole production. After they are booked, you can change those days.
                 </p>
                 <p>
-                    Relay: one email to the crew who have accepted. Send it to everyone, one department, or one shoot day. Pending invitations are not included. Relays go out from the project owner.
+                    A relay is one email to the crew who have accepted. Send it to everyone, one department, or one shoot day. Pending invitations are not included. Only the project owner can send relays.
                 </p>
             </div>
         </section>
@@ -771,7 +761,7 @@
                     Accepting an invite does not require a payment. Crew are free.
                 </p>
                 <p>
-                    Pricing for producers is planned. No prices are shown here, and the app does not take payment today.
+                    Pricing for producers is planned, and the app does not take payment today.
                 </p>
             </div>
         </section>
@@ -779,13 +769,12 @@
         <section class="sheet" id="request-access">
             <div class="wrap">
                 <div class="label" aria-hidden="true"></div>
-                <h2>Request beta access</h2>
-                <p class="beta-badge">In closed beta with Cleveland producers. Capped at 3 to 5 producers.</p>
+                <h2>Join the closed beta</h2>
+                <p>In closed beta with Cleveland producers. Capped at 3 to 5 producers.</p>
                 <p>
-                    oneAD is invite-only right now. Request access and Jonathan will follow up.
+                    Beta spots are limited. Send your name, email and the kind of production you work on, and Jonathan will reply about next steps.
                 </p>
                 <a class="cta-button" href="#beta-dialog">Request beta access</a>
-                <p class="byline">Built by Jonathan Skinner, Skinner Consulting, Cleveland.</p>
             </div>
         </section>
     </main>
@@ -820,7 +809,7 @@
 
     <footer>
         <div class="footer-inner">
-            &copy; 2026 oneAD. Built by Jonathan Skinner, Skinner Consulting, Cleveland.
+            &copy; 2026 Skinner Software Consulting LLC. oneAD is built in Cleveland.
         </div>
     </footer>
 
