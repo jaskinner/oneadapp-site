@@ -2,9 +2,52 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>oneAD – Your Indie Production Wingman</title>
+    <title>oneAD: Crew Booking for Film Productions</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="oneAD is a modern, intuitive platform empowering independent filmmakers to streamline production coordination and collaborate with ease.">
+    <meta name="description" content="Invite film crew by email, book them by shoot day or the whole production, and keep a private rehire list. Crew accept by link, no account. Free for crew.">
+    <link rel="canonical" href="https://oneadapp.com/">
+    <meta property="og:title" content="oneAD: Crew Booking for Film Productions">
+    <meta property="og:description" content="Invite film crew by email, book them by shoot day or the whole production, and keep a private rehire list. Crew accept by link, no account. Free for crew.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://oneadapp.com/">
+    <meta property="og:site_name" content="oneAD">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:description" content="Invite film crew by email, book them by shoot day or the whole production, and keep a private rehire list. Crew accept by link, no account. Free for crew.">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "oneAD",
+        "url": "https://oneadapp.com/",
+        "founder": {
+            "@type": "Person",
+            "name": "Jonathan Skinner"
+        }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "oneAD",
+        "url": "https://oneadapp.com/"
+    }
+    </script>
+    <noscript>
+        <style>
+            #beta-dialog {
+                display: block;
+                position: static;
+                width: min(440px, calc(100% - 32px));
+                margin: 0 auto 48px;
+                inset: auto;
+            }
+            #beta-cancel {
+                display: none;
+            }
+        </style>
+    </noscript>
     <style>
         body {
             font-family: 'Segoe UI', Arial, sans-serif;
@@ -15,7 +58,7 @@
         }
         header {
             background: #15181e;
-            padding: 40px 0 20px 0;
+            padding: 32px 16px 20px;
             text-align: center;
         }
         .logo {
@@ -25,182 +68,404 @@
             letter-spacing: 2px;
         }
         nav {
-            margin: 20px 0 0 0;
+            margin: 20px 0 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px 18px;
         }
         nav a {
             color: #d1d9e6;
-            margin: 0 18px;
             text-decoration: none;
-            font-size: 1.1rem;
-            transition: color 0.2s;
+            font-size: 1.05rem;
         }
-        nav a:hover {
+        nav a:hover,
+        nav a:focus-visible {
             color: #77e1cf;
         }
+        a:focus-visible,
+        button:focus-visible,
+        input:focus-visible,
+        textarea:focus-visible {
+            outline: 2px solid #77e1cf;
+            outline-offset: 3px;
+        }
+        .hero,
+        .section {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 48px 16px;
+        }
         .hero {
-            max-width: 700px;
-            margin: 40px auto;
             text-align: center;
+            padding-top: 40px;
+        }
+        .hero h1,
+        .section h2 {
+            color: #77e1cf;
+            line-height: 1.25;
         }
         .hero h1 {
             font-size: 2.5rem;
-            margin-bottom: 18px;
-            color: #77e1cf;
+            margin: 0 0 18px;
+        }
+        .section h2 {
+            font-size: 1.7rem;
+            margin: 0 0 12px;
+        }
+        .lede,
+        .hero p,
+        .section p,
+        .section li {
+            font-size: 1.12rem;
         }
         .hero p {
-            font-size: 1.28rem;
-            margin-bottom: 32px;
+            margin: 0 0 28px;
         }
-        .cta-button {
+        .hero .beta-badge,
+        .section .beta-badge {
+            display: inline-block;
+            margin: 0 0 18px;
+            padding: 6px 14px;
+            border: 1px solid #77e1cf;
+            border-radius: 999px;
+            color: #77e1cf;
+            font-size: 0.92rem;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+        .cta-button,
+        .form-submit {
             display: inline-block;
             background: #77e1cf;
             color: #191c24;
             font-size: 1.15rem;
             font-weight: bold;
+            font-family: inherit;
             padding: 14px 38px;
+            border: 0;
             border-radius: 8px;
             text-decoration: none;
-            box-shadow: 0 5px 20px rgba(50,100,100,0.12);
-            transition: background 0.16s, color 0.16s;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(50, 100, 100, 0.12);
         }
-        .cta-button:hover {
+        .cta-button:hover,
+        .form-submit:hover {
             background: #5fd1b5;
             color: #15181e;
         }
-        .features {
+        .band {
             background: #222530;
-            padding: 36px 0;
         }
-        .features-container {
-            max-width: 950px;
-            margin: 0 auto;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            justify-content: center;
+        .steps {
+            margin: 16px 0 0;
+            padding-left: 1.2rem;
         }
-        .feature-card {
-            background: #23263a;
-            border-radius: 10px;
-            padding: 32px 24px;
-            flex: 1 1 255px;
-            min-width: 220px;
-            max-width: 350px;
-            box-shadow: 0 2px 20px rgba(40,80,90,0.07);
-            text-align: center;
+        .steps li {
+            margin: 0 0 8px;
         }
-        .feature-icon {
-            font-size: 2.5rem;
-            margin-bottom: 16px;
-            color: #77e1cf;
-        }
-        .feature-title {
-            font-size: 1.17rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-        .feature-desc {
-            font-size: 1rem;
-        }
-        .about {
-            max-width: 800px;
-            margin: 48px auto;
-            padding: 16px;
-            text-align: center;
-        }
-        .about-author {
+        .byline {
             color: #77e1cf;
             font-weight: 500;
+        }
+        dialog {
+            border: 0;
+            border-radius: 12px;
+            background: #23263a;
+            color: #f8f8f8;
+            width: min(440px, calc(100% - 32px));
+            padding: 0;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+        }
+        dialog::backdrop {
+            background: rgba(10, 12, 16, 0.72);
+        }
+        .beta-form {
+            margin: 0;
+            padding: 24px 22px 22px;
+        }
+        .beta-form h3 {
+            margin: 0 0 8px;
+            color: #77e1cf;
+            font-size: 1.4rem;
+        }
+        .beta-form p {
+            margin: 0 0 16px;
+            font-size: 0.98rem;
+        }
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 14px;
+            font-size: 0.98rem;
+        }
+        .field input {
+            font: inherit;
+            font-size: 1rem;
+            padding: 10px 12px;
+            border-radius: 8px;
+            border: 1px solid #3a4158;
+            background: #191c24;
+            color: #f8f8f8;
+        }
+        .form-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 6px;
+        }
+        .text-button {
+            background: transparent;
+            color: #d1d9e6;
+            border: 1px solid #3a4158;
+            border-radius: 8px;
+            font: inherit;
+            font-weight: 600;
+            padding: 14px 22px;
+            cursor: pointer;
+        }
+        .form-status {
+            margin: 12px 0 0;
+            font-size: 0.98rem;
+        }
+        .form-status[data-state="error"] {
+            color: #ffb4b4;
+        }
+        .hp {
+            position: absolute;
+            left: -10000px;
+            top: auto;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
         }
         footer {
             background: #191c24;
             text-align: center;
-            padding: 25px 0;
+            padding: 25px 16px;
             font-size: 0.98rem;
             color: #6aa7ac;
             border-top: 1px solid #262a36;
         }
-        @media (max-width: 750px){
-            .features-container{
-                flex-direction: column;
-                align-items: center;
+        @media (max-width: 750px) {
+            .logo {
+                font-size: 2.2rem;
             }
-            header, .hero, .about{ padding-left:12px; padding-right:12px;}
+            .hero h1 {
+                font-size: 1.9rem;
+            }
+            .cta-button,
+            .form-submit,
+            .text-button {
+                width: 100%;
+                box-sizing: border-box;
+                text-align: center;
+            }
+            .form-actions {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 <body>
     <header>
         <div class="logo">oneAD</div>
-        <nav>
-            <a href="#features">Features</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
+        <nav aria-label="Page">
+            <a href="#problem">The problem</a>
+            <a href="#how-it-works">How it works</a>
+            <a href="#booking">Booking</a>
+            <a href="#crew-book">Crew book</a>
+            <a href="#free-for-crew">Free for crew</a>
+            <a href="#request-access">Beta access</a>
         </nav>
     </header>
 
-    <section class="hero">
-        <h1>Simplify Your Indie Film Production</h1>
-        <p>
-            Running a set solo or with a micro-crew? <b>oneAD</b> is the all-in-one digital assistant designed for independent filmmakers.<br>
-            Organize, schedule, communicate, and <span style="color:#77e1cf;font-weight:bold;">keep your passion projects moving</span>—all in one place.<br>
-        </p>
-        <a class="cta-button" href="#contact">Get Early Access</a>
-    </section>
+    <main>
+        <section class="hero" id="top">
+            <p class="beta-badge">In closed beta with Cleveland producers. Capped at 3 to 5 producers.</p>
+            <h1>Book your crew. Rehire the best.</h1>
+            <p>
+                Invite crew by email. They accept or decline from a link, no account needed. Everyone you hire goes into a private rehire list only you can see. Crew are free.
+            </p>
+            <p>
+                Works alongside the tools you already use, like StudioBinder, Movie Magic and Wrapbook.
+            </p>
+            <p>
+                Made for indie producers, line producers, UPMs, and ADs who book crew by text and email today.
+            </p>
+            <a class="cta-button" href="#beta-dialog">Request beta access</a>
+        </section>
 
-    <section class="features" id="features">
-        <div class="features-container">
-            <div class="feature-card">
-                <div class="feature-icon">🤝</div>
-                <div class="feature-title">Crew & Cast Management</div>
-                <div class="feature-desc">
-                    Centralize contacts, track roles, and manage availability in seconds.
-                </div>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">📱</div>
-                <div class="feature-title">Instant Updates & Reminders</div>
-                <div class="feature-desc">
-                    Notify your team about script changes, location moves, or last-minute updates—no group chat chaos.
-                </div>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">💡</div>
-                <div class="feature-title">Resource Tracking (Coming Soon)</div>
-                <div class="feature-desc">
-                    Keep tabs on props, gear, locations, and permits. Stay on top of your production essentials.
-                </div>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">⚡</div>
-                <div class="feature-title">Designed for Indie Filmmakers</div>
-                <div class="feature-desc">
-                    Lightweight, intuitive, and focused on your real-world needs. No studio bloat—just what matters.
-                </div>
-            </div>
-        </div>
-    </section>
+        <section class="section band" id="problem">
+            <h2>Confirmations get lost between texts and sheets</h2>
+            <p>
+                You are already booking crew by text and email, then checking a sheet to see who said yes. oneAD keeps that answer on the project: who you invited, and who accepted.
+            </p>
+        </section>
 
-    <section class="about" id="about">
-        <h2>Why oneAD?</h2>
-        <p>
-            As an independent filmmaker, you juggle a thousand tasks on and off set. <b>oneAD</b> helps you cut through the chaos—so you can spend less time organizing, and more time creating.<br><br>
-            From pre-production to wrap, <b>oneAD</b> keeps your indie projects moving forward.
-        </p>
-        <p class="about-author">Created by Jon Skinner — filmmaker, problem-solver, and your biggest supporter.</p>
-    </section>
+        <section class="section" id="how-it-works">
+            <h2>How it works</h2>
+            <ol class="steps">
+                <li>Create a project.</li>
+                <li>Add departments, then the roles in each department.</li>
+                <li>Add the shoot days.</li>
+                <li>Invite crew by email.</li>
+                <li>They accept or decline from the link. No account is required. The link expires in 14 days.</li>
+            </ol>
+            <p>
+                Each department lists its roles, who is booked, and which invitations are still out.
+            </p>
+        </section>
 
-    <section class="about" id="contact">
-        <h2>Get In Touch / Early Access</h2>
-        <p>
-            Want to be part of the first wave, or just have questions?<br>
-            Drop me a line and let's get your indie project powered up with oneAD!<br><br>
-            <a href="mailto:hi@skinnerconsulting.tech" style="color:#77e1cf;font-weight:600;text-decoration:underline;">hi@skinnerconsulting.tech</a>
-        </p>
-    </section>
+        <section class="section band" id="booking">
+            <h2>A day, or the whole production</h2>
+            <p>
+                When you invite someone, choose the shoot days they are booked. Leave the days unchecked and they are booked for the whole production. After they are booked, you can change those days.
+            </p>
+            <p>
+                Relay: one email to the crew who have accepted. Send it to everyone, one department, or one shoot day. Pending invitations are not included. Relays go out from the project owner.
+            </p>
+        </section>
+
+        <section class="section" id="crew-book">
+            <h2>A private crew book</h2>
+            <p>
+                When someone accepts, they are saved to your private crew book. You can rate them from 1 to 5 and keep notes. Ratings and notes stay private to you.
+            </p>
+            <p>
+                The next time you invite for a role, people you have already hired for that role are listed first, highest rating first. You can still type a new email.
+            </p>
+        </section>
+
+        <section class="section band" id="free-for-crew">
+            <h2>Crew are free. Pricing is planned.</h2>
+            <p>
+                Accepting an invite does not require a payment. Crew are free.
+            </p>
+            <p>
+                Pricing for producers is planned. No prices are shown here, and the app does not take payment today.
+            </p>
+        </section>
+
+        <section class="section" id="request-access">
+            <h2>Request beta access</h2>
+            <p class="beta-badge">In closed beta with Cleveland producers. Capped at 3 to 5 producers.</p>
+            <p>
+                oneAD is invite-only right now. Request access and Jonathan will follow up.
+            </p>
+            <a class="cta-button" href="#beta-dialog">Request beta access</a>
+            <p class="byline">Built by Jonathan Skinner, Skinner Consulting, Cleveland.</p>
+        </section>
+    </main>
+
+    <dialog id="beta-dialog" aria-labelledby="beta-dialog-title">
+        <form class="beta-form" name="beta-access" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
+            <h3 id="beta-dialog-title">Request beta access</h3>
+            <p>Send your name, email, and the kind of production you work on.</p>
+            <p class="hp" aria-hidden="true">
+                <label>Leave this empty <input name="bot-field" type="text" tabindex="-1" autocomplete="off"></label>
+            </p>
+            <input type="hidden" name="form-name" value="beta-access">
+            <label class="field">
+                Name
+                <input id="beta-name" name="name" type="text" required maxlength="200" autocomplete="name">
+            </label>
+            <label class="field">
+                Email
+                <input id="beta-email" name="email" type="email" required maxlength="200" autocomplete="email">
+            </label>
+            <label class="field">
+                Production type
+                <input id="beta-production-type" name="production-type" type="text" required maxlength="200" autocomplete="off">
+            </label>
+            <div class="form-actions">
+                <button class="form-submit" type="submit">Request beta access</button>
+                <button class="text-button" type="button" id="beta-cancel">Cancel</button>
+            </div>
+            <p class="form-status" id="beta-status" role="status" hidden></p>
+        </form>
+    </dialog>
 
     <footer>
-        &copy; 2026 oneAD. Made for indie filmmakers, by Jon Skinner.
+        &copy; 2026 oneAD. Built by Jonathan Skinner, Skinner Consulting, Cleveland.
     </footer>
+
+    <script>
+        (function () {
+            var dialog = document.getElementById('beta-dialog');
+            var form = dialog.querySelector('form');
+            var status = document.getElementById('beta-status');
+            var cancel = document.getElementById('beta-cancel');
+            var nameInput = document.getElementById('beta-name');
+            var lastTrigger = null;
+
+            if (!dialog || !form || typeof dialog.showModal !== 'function') {
+                return;
+            }
+
+            function openDialog(trigger) {
+                lastTrigger = trigger || null;
+                status.hidden = true;
+                status.textContent = '';
+                status.removeAttribute('data-state');
+                dialog.showModal();
+                nameInput.focus();
+            }
+
+            function closeDialog() {
+                if (dialog.open) {
+                    dialog.close();
+                }
+            }
+
+            document.querySelectorAll('a[href="#beta-dialog"]').forEach(function (link) {
+                link.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    openDialog(link);
+                });
+            });
+
+            cancel.addEventListener('click', closeDialog);
+
+            dialog.addEventListener('close', function () {
+                if (lastTrigger && typeof lastTrigger.focus === 'function') {
+                    lastTrigger.focus();
+                }
+            });
+
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+                if (!form.reportValidity()) {
+                    return;
+                }
+
+                var submit = form.querySelector('button[type="submit"]');
+                submit.disabled = true;
+                status.hidden = true;
+                status.removeAttribute('data-state');
+
+                var body = new URLSearchParams(new FormData(form)).toString();
+                fetch('/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: body
+                }).then(function (response) {
+                    if (!response.ok) {
+                        throw new Error('Request failed');
+                    }
+                    form.reset();
+                    status.textContent = 'Thanks. Your request has been sent.';
+                    status.hidden = false;
+                }).catch(function () {
+                    status.dataset.state = 'error';
+                    status.textContent = 'That request did not send. Check the form and try again.';
+                    status.hidden = false;
+                }).finally(function () {
+                    submit.disabled = false;
+                });
+            });
+        })();
+    </script>
 </body>
 </html>
