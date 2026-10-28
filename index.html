@@ -5,6 +5,20 @@
     <title>oneAD — Book your crew. Rehire the best.</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Invite crew by email, book them for a shoot day or the whole production, and keep a private rehire list. They accept or decline by link, with no account. Crew are free.">
+    <noscript>
+        <style>
+            #beta-dialog {
+                display: block;
+                position: static;
+                width: min(440px, calc(100% - 32px));
+                margin: 0 auto 48px;
+                inset: auto;
+            }
+            #beta-cancel {
+                display: none;
+            }
+        </style>
+    </noscript>
     <style>
         body {
             font-family: 'Segoe UI', Arial, sans-serif;
@@ -349,7 +363,7 @@
                 Accepting an invite does not require an account or a payment. Crew are free.
             </p>
             <p>
-                Pricing for producers is planned. No prices are shown here, and the app does not charge one today.
+                Pricing for producers is planned. No prices are shown here, and the app does not take payment today.
             </p>
         </section>
 
@@ -368,7 +382,7 @@
             <h2 id="beta-dialog-title">Request beta access</h2>
             <p>Send your name, email, and the kind of production you work on.</p>
             <p class="hp">
-                <label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label>
+                <label>Leave this empty <input name="bot-field" type="text" tabindex="-1" autocomplete="off"></label>
             </p>
             <input type="hidden" name="form-name" value="beta-access">
             <label class="field">
@@ -390,21 +404,6 @@
             <p class="form-status" id="beta-status" role="status" hidden></p>
         </form>
     </dialog>
-
-    <noscript>
-        <style>
-            #beta-dialog {
-                display: block;
-                position: static;
-                width: min(440px, calc(100% - 32px));
-                margin: 0 auto 48px;
-                inset: auto;
-            }
-            #beta-cancel {
-                display: none;
-            }
-        </style>
-    </noscript>
 
     <footer>
         &copy; 2026 oneAD. Built by Jonathan Skinner, Skinner Consulting, Cleveland.
