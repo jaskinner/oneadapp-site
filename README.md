@@ -9,3 +9,5 @@ The homepage describes what oneAD does today. Beta requests use a Netlify Form n
 Visual design tokens and the theme spec are in [THEME.md](THEME.md).
 
 Intentional homepage copy changes must regenerate [scripts/copy-baseline.txt](scripts/copy-baseline.txt) with `node scripts/check-copy.mjs --write` and commit that file.
+
+The social share image is `og-image.png` (1200×630), referenced by the `og:image` and `twitter:image` tags in `index.html`. Its source is [scripts/og/og-image.html](scripts/og/og-image.html). After editing it, run `node scripts/render-og-image.mjs` (needs Google Chrome; set `CHROME` to use another path) and commit both files. If the image changes, refresh LinkedIn's cache with the Post Inspector.
