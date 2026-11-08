@@ -58,8 +58,16 @@ og:description=Invite film crew by email, book them by shoot day or the whole pr
 og:type=website
 og:url=https://oneadapp.com/
 og:site_name=oneAD
-twitter:card=summary
+og:image=https://oneadapp.com/og-image.png
+og:image:secure_url=https://oneadapp.com/og-image.png
+og:image:type=image/png
+og:image:width=1200
+og:image:height=630
+og:image:alt=oneAD crew booking software for film productions
+twitter:card=summary_large_image
+twitter:title=oneAD: Crew Booking Software for Film Productions
 twitter:description=Invite film crew by email, book them by shoot day or the whole production, and keep a private rehire list. Crew accept by link, no account. Free for crew.
+twitter:image=https://oneadapp.com/og-image.png
 
 == canonical
 <link rel="canonical" href="https://oneadapp.com/">
